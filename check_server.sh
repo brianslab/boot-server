@@ -5,6 +5,5 @@ status=$( echo $? )
 
 if [[ $status != 0 ]]; then
     echo "host is offline"
-else
-    echo "host is online"
+    ipmitool -H 192.168.5.89 -U ADMIN -P '$PASSWORD' chasis power cycle
 fi
