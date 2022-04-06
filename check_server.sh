@@ -10,7 +10,11 @@ for server in 10.100.100.2 10.100.100.97 10.100.100.52; do
 
     if [[ $status != 0 ]]; then
         echo "$server is offline"
-        ipmitool -H 192.168.5.89 -U ADMIN -P '$PASSWORD' chasis power cycle
+        ipmitool -H 192.168.5.89 -U ADMIN -P '$PASSWORD' chasis power off
+        sleep 30
+        ipmitool -H 192.168.5.89 -U ADMIN -P '$PASSWORD' chasis power on
         break
+    else
+        echo "$server is online"
     fi
 done
